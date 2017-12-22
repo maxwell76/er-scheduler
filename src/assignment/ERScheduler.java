@@ -3,7 +3,8 @@ package assignment;
 
 public class ERScheduler extends javax.swing.JFrame {
     
-    int condition
+    int condition;
+    
 
     public ERScheduler() {
         initComponents();
