@@ -1,13 +1,19 @@
 package assignment;
 
+import javax.swing.JOptionPane;
+
 
 public class ERScheduler extends javax.swing.JFrame {
     
-    int condition;
-    
+    String condition, name;
+    int conditionnum;
+    LinkedPriorityQueue er = new LinkedPriorityQueue(3);
+    Patient p;
 
     public ERScheduler() {
         initComponents();
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -15,6 +21,7 @@ public class ERScheduler extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jRadioButton1 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         txtname = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -26,6 +33,8 @@ public class ERScheduler extends javax.swing.JFrame {
         btnall = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtarea = new javax.swing.JTextArea();
+
+        jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +50,11 @@ public class ERScheduler extends javax.swing.JFrame {
 
         buttonGroup1.add(rbtncritical);
         rbtncritical.setText("Critical Condition");
+        rbtncritical.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtncriticalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,6 +88,11 @@ public class ERScheduler extends javax.swing.JFrame {
         });
 
         btnnext.setText("Treat Next");
+        btnnext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnextActionPerformed(evt);
+            }
+        });
 
         btnall.setText("Treat All");
         btnall.addActionListener(new java.awt.event.ActionListener() {
@@ -136,10 +155,36 @@ public class ERScheduler extends javax.swing.JFrame {
     }//GEN-LAST:event_btnallActionPerformed
 
     private void btnscheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnscheduleActionPerformed
-        if(rbtncritical.isEnabled()){
-            
+        if(rbtncritical.isSelected()==true) {
+            condition="critical";
+            name=txtname.getText();
+            conditionnum=0;
+        }if(rbtnserious.isSelected()==true){
+            condition="serious";
+            name=txtname.getText();
+            conditionnum=1;
+        }if(rbtnfair.isSelected()==true){
+            condition="fair";
+            name=txtname.getText();
+            conditionnum=2;
         }
+        p=new Patient(name, condition);
+        er.enqueue(p,conditionnum);
+        txtarea.append("name: "+p.name()+"\tCondition: "+p.condition()+"\twaiting...\n");
     }//GEN-LAST:event_btnscheduleActionPerformed
+
+    private void rbtncriticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtncriticalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtncriticalActionPerformed
+
+    private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
+        if(er.peekFront()=="No patients"){
+            txtarea.append("No patients");
+        }
+        else
+        txtarea.append(er.dequeue()+" has been treated\n");
+        
+    }//GEN-LAST:event_btnnextActionPerformed
 
     
     public static void main(String args[]) {
@@ -181,6 +226,7 @@ public class ERScheduler extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbtncritical;
     private javax.swing.JRadioButton rbtnfair;

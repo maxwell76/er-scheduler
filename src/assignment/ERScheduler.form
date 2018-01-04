@@ -4,6 +4,11 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jRadioButton1"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -145,6 +150,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Critical Condition"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtncriticalActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -160,6 +168,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Treat Next"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnnextActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnall">
       <Properties>

@@ -24,7 +24,7 @@ public class LinkedPriorityQueue implements PriorityQueue{
             if(list[i].size()>0)
                 return list[i].get(0);
         }
-        throw new IllegalStateException("Queue is empty");
+        return "No patients";
     }
 
     @Override
@@ -35,7 +35,7 @@ public class LinkedPriorityQueue implements PriorityQueue{
         }
         throw new IllegalStateException("Queue is empty");
     }
-
+    
     @Override
     public void enqueue(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
