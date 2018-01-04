@@ -151,7 +151,11 @@ public class ERScheduler extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnallActionPerformed
-        
+        while(er.peekFront()!="No patients"){
+            txtarea.append(er.dequeue()+" has been treated\n");
+            
+        }     
+        txtarea.append("No patients\n");
     }//GEN-LAST:event_btnallActionPerformed
 
     private void btnscheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnscheduleActionPerformed
@@ -179,7 +183,7 @@ public class ERScheduler extends javax.swing.JFrame {
 
     private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
         if(er.peekFront()=="No patients"){
-            txtarea.append("No patients");
+            txtarea.append("No patients\n");
         }
         else
         txtarea.append(er.dequeue()+" has been treated\n");
